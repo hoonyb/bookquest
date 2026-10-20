@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#E6DDC8">
+<meta name="theme-color" content="#14142A">
 <meta name="description" content="책 한 권이 퀘스트 하나 — 위시·읽는 중·완독으로 쌓는 나의 독서 이력">
 <link rel="preload" href="fonts/Galmuri11.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/Galmuri11-Bold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
-<script>window.BQ_SYNC=true</script>
+<script>window.BQ_SYNC=true;window.BQ_SEARCH="https://bookquest-search.hoony624.workers.dev"</script>
 <style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>북퀘스트</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -271,6 +271,20 @@ select{border:2.5px solid var(--outline);background:var(--surface);border-radius
 .toast.on{opacity:1}
 
 .skin{margin-left:0}
+.srow{display:flex;gap:8px;align-items:stretch}
+.srow input{flex:1;min-width:0}
+.srow .btn{flex:none;padding-block:6px}
+.sr{margin-top:8px;display:flex;flex-direction:column;gap:2px;max-height:300px;overflow-y:auto;border:2px solid var(--outline);background:var(--bg);padding:4px}
+.sr-item{display:flex;gap:10px;align-items:center;text-align:left;border:0;background:none;padding:6px;min-width:0}
+.sr-item:hover,.sr-item:focus-visible{background:var(--accent-soft)}
+.sr-cv{width:34px;aspect-ratio:2/3;flex:none;background:var(--soft);overflow:hidden;border:1.5px solid var(--outline)}
+.sr-cv img{width:100%;height:100%;object-fit:cover;display:block}
+.sr-tx{display:flex;flex-direction:column;min-width:0;line-height:1.35}
+.sr-tx b{font-weight:600;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sr-tx span{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sr-close{border:0;background:none;color:var(--muted);font-size:13px;padding:8px;text-decoration:underline}
+.sr-note{margin:8px 0 0}
+
 #btn-backup[data-sync]::after{content:"";display:inline-block;width:8px;height:8px;margin-left:6px;vertical-align:middle;background:var(--muted)}
 #btn-backup[data-sync="ok"]::after{background:#3CC29A}
 #btn-backup[data-sync="err"]::after{background:var(--danger)}
@@ -297,11 +311,11 @@ select{border:2.5px solid var(--outline);background:var(--surface);border-radius
 @font-face{font-family:"Galmuri11";src:url(fonts/Galmuri11.woff2) format("woff2");font-display:block}
 @font-face{font-family:"Galmuri11B";src:url(fonts/Galmuri11-Bold.woff2) format("woff2");font-display:block}
 :root{
-  --bg:#E6DDC8; --dot:#D3C6A8; --surface:#FBF6EA; --fg:#2A2218; --muted:#6E6250; --soft:#CDBF9F;
-  --outline:#2A2218; --wood:#B8763A; --wood-hi:#D9995A; --wood-dk:#7A4820;
-  --accent:#4256C9; --accent-soft:#D9DCF2; --on-accent:#FFFFFF; --hl:#F2C440; --pink:#E8577F;
-  --k1:#F4D6D2; --k2:#D3E0E8; --k3:#D8E8C8; --k4:#F3E2B2;
-  --heat-0:#DDD3BC; --heat-1:#9FD39A; --heat-2:#4FAE52; --heat-3:#1E6E2E;
+  --bg:#14142A; --dot:#262650; --surface:#23234A; --fg:#F1F1FF; --muted:#A3A7CC; --soft:#34345E;
+  --outline:#05050F; --wood:#9A5E2C; --wood-hi:#BF7F45; --wood-dk:#5E3416;
+  --accent:#7099FF; --accent-soft:#2D3770; --on-accent:#0A0F2C; --hl:#E2B532; --pink:#FF6E9C;
+  --k1:#4D2238; --k2:#1D3A55; --k3:#1F4527; --k4:#4A3D16;
+  --heat-0:#2A2A50; --heat-1:#2F6B34; --heat-2:#4DAE52; --heat-3:#A6F09E; color-scheme:dark;
   --display:"Galmuri11B","Galmuri11",monospace; --body:"Galmuri11",monospace;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
@@ -318,6 +332,7 @@ select{border:2.5px solid var(--outline);background:var(--surface);border-radius
   --heat-0:#2A2A50; --heat-1:#2F6B34; --heat-2:#4DAE52; --heat-3:#A6F09E; color-scheme:dark}
 
 *,*::before,*::after{border-radius:0!important}
+:root[data-skin="pixel"]{color-scheme:dark}
 body{font-size:13px;-webkit-font-smoothing:none;font-smooth:never;background-image:linear-gradient(var(--dot) 3px,transparent 3px),linear-gradient(90deg,var(--dot) 3px,transparent 3px);background-size:30px 30px}
 .hbar,.chip,.viewtog,.spine,.cv .art,.blk,.kpi,.btn,.fab,.sheet,.toast,select,.f input,.f textarea,.seg button,.pill,.sec-h span,.banner button,.goal input,.hb .tr,.genre-bar,.coverpick .thumb,.st .mini,.legend i,.goal .shelfbar i,.mcol .b{border-width:3px}
 .hbar{padding:6px 8px 6px 14px;box-shadow:4px 4px 0 var(--outline)}
@@ -637,6 +652,51 @@ function renderStats(){
     <div class="grid2">${goalHTML}${monthHTML}${heatHTML}${genreHTML}${authorHTML}${yearHTML}${stalledHTML}</div>`;
 }
 
+
+/* ───── 알라딘 책 검색 (중계 서버 주소가 있을 때만) ───── */
+const SEARCH=String(window.BQ_SEARCH||'').replace(/\/+$/,'');
+function readForm(d){const v=id=>{const e=document.getElementById(id);return e?e.value:null};
+  if(v('f-title')===null)return;
+  d.title=v('f-title').trim();d.author=v('f-author').trim();d.genre=v('f-genre').trim();d.pages=v('f-pages');d.startedAt=v('f-start');d.finishedAt=v('f-finish')}
+function resultsHTML(d){
+  if(d._loading)return '<p class="hint sr-note">알라딘에서 표지와 쪽수를 가져오는 중…</p>';
+  if(d._err)return `<p class="err sr-note">${esc(d._err)}</p>`;
+  if(!d._results)return '';
+  if(!d._results.length)return '<div class="sr"><p class="hint sr-note">검색 결과가 없어요. 제목을 조금 줄여서 다시 찾아보거나, 그대로 직접 입력해도 돼요.</p></div>';
+  return `<div class="sr" role="listbox" aria-label="검색 결과">${d._results.map((it,i)=>`<button type="button" class="sr-item" data-pick="${i}">
+      <span class="sr-cv">${it.cover?`<img src="${esc(it.cover)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:''}</span>
+      <span class="sr-tx"><b>${esc(cleanTitle(it.title))}</b><span>${esc(cleanAuthor(it.author))}${it.publisher?' · '+esc(it.publisher):''}${it.pubDate?' · '+esc(String(it.pubDate).slice(0,4)):''}</span></span></button>`).join('')}
+    <button type="button" class="sr-close" id="sr-close">목록 닫고 직접 입력하기</button></div>`}
+const cleanTitle=t=>String(t||'').split(' - ')[0].trim();
+const cleanAuthor=a=>String(a||'').split(',')[0].replace(/\s*\([^)]*\)\s*/g,' ').trim();
+function mapGenre(cat){const p=String(cat||'').split('>').map(x=>x.trim());const top=p[1]||'',sub=p[2]||'';
+  if(!top)return '';
+  if(top.startsWith('소설')){return /^시|시$|시조|시집/.test(sub)&&!sub.includes('소설')?'시':'소설'}
+  const M={'에세이':'에세이','인문학':'인문','사회과학':'인문','과학':'과학','역사':'역사','경제경영':'경제·경영','자기계발':'자기계발','컴퓨터/모바일':'IT','예술/대중문화':'예술','만화':'만화','여행':'에세이'};
+  if(top==='인문학'&&sub.includes('철학'))return '철학';
+  return M[top]||top.split('/')[0]}
+async function doSearch(d){const q=(d.title||'').trim();
+  if(!q){d._err='찾을 제목을 먼저 적어 주세요.';renderSheet();return}
+  d._searching=true;d._err='';d._results=null;renderSheet();
+  try{const r=await fetch(SEARCH+'/search?q='+encodeURIComponent(q));if(!r.ok)throw new Error(r.status);const j=await r.json();
+    if(draft!==d)return;readForm(d);d._results=j.items||[]}
+  catch(e){if(draft!==d)return;readForm(d);d._err=navigator.onLine?'검색하지 못했어요. 잠시 후 다시 해 보세요.':'인터넷에 연결되면 검색할 수 있어요.'}
+  d._searching=false;renderSheet()}
+function toCoverDataURL(blob){return new Promise((res,rej)=>{const u=URL.createObjectURL(blob),im=new Image();
+  im.onload=()=>{const w=300,h=Math.round(im.height*w/im.width),c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(im,0,0,w,h);URL.revokeObjectURL(u);res(c.toDataURL('image/jpeg',.82))};
+  im.onerror=()=>{URL.revokeObjectURL(u);rej()};im.src=u})}
+async function pick(d,it){if(!it)return;
+  d.title=cleanTitle(it.title);d.author=cleanAuthor(it.author);const g=mapGenre(it.categoryName);if(g)d.genre=g;
+  if(it.itemPage&&!d.pages)d.pages=String(it.itemPage);
+  d._results=null;d._err='';d._loading=true;renderSheet();
+  let pages=null,cover=null;
+  await Promise.all([
+    it.isbn13&&!it.itemPage?fetch(SEARCH+'/item?isbn='+it.isbn13).then(r=>r.ok?r.json():{}).then(j=>{if(j.itemPage)pages=String(j.itemPage)}).catch(()=>{}):null,
+    it.cover?fetch(SEARCH+'/cover?u='+encodeURIComponent(it.cover)).then(r=>{if(!r.ok)throw 0;return r.blob()}).then(toCoverDataURL).then(u=>{cover=u}).catch(()=>{}):null]);
+  if(draft!==d)return;readForm(d);
+  if(pages&&!d.pages)d.pages=pages;if(cover)d.cover=cover;
+  d._loading=false;renderSheet()}
+
 /* ───── 시트: 추가/수정 ───── */
 let draft=null;
 function openEdit(id){const b=id?state.books.find(x=>x.id===id):null;
@@ -645,7 +705,7 @@ function openEdit(id){const b=id?state.books.find(x=>x.id===id):null;
 function renderSheet(){const d=draft;
   $('#modal').innerHTML=`<div class="scrim" id="scrim"><form class="sheet" id="form" novalidate>
     <h3>${d._new?'새 책 꽂기':'책 정보'}</h3>
-    <div class="f"><label for="f-title">제목</label><input id="f-title" value="${esc(d.title)}" required autocomplete="off"></div>
+    <div class="f"><label for="f-title">제목</label><div class="srow"><input id="f-title" value="${esc(d.title)}" required autocomplete="off" ${SEARCH?'enterkeyhint="search" placeholder="제목을 치고 검색을 눌러 보세요"':''}>${SEARCH?`<button type="button" class="btn sec" id="f-search" ${d._searching?'disabled':''}>${d._searching?'찾는 중…':'검색'}</button>`:''}</div>${resultsHTML(d)}</div>
     <div class="two"><div class="f"><label for="f-author">작가</label><input id="f-author" value="${esc(d.author)}" autocomplete="off"></div>
       <div class="f"><label for="f-genre">장르</label><input id="f-genre" list="genres" value="${esc(d.genre)}" autocomplete="off"><datalist id="genres">${GENRES.map(g=>`<option value="${g}">`).join('')}</datalist></div></div>
     <div class="f"><label>상태</label><div class="seg">${['wish','reading','done'].map(s=>`<button type="button" data-st="${s}" aria-pressed="${d.status===s}">${STATUS_LABEL[s]}</button>`).join('')}</div></div>
@@ -660,10 +720,15 @@ function renderSheet(){const d=draft;
     <div class="actions">${d._new?'':d._confirm?`<span style="font-size:14px">정말 뺄까요?</span><button type="button" class="btn del" id="del-yes">빼기</button><button type="button" class="btn sec" id="del-no">취소</button>`:'<button type="button" class="btn del" id="del">책장에서 빼기</button>'}
       <button type="button" class="btn sec" id="cancel" ${d._confirm?'hidden':''} style="${d._new?'margin-left:auto':''}">닫기</button><button class="btn pri" type="submit" ${d._confirm?'hidden':''} style="${d._new?'margin-left:0':''}">${d._new?'책장에 꽂기':'저장'}</button></div>
   </form></div>`;
-  const keep=()=>{d.title=$('#f-title').value.trim();d.author=$('#f-author').value.trim();d.genre=$('#f-genre').value.trim();d.pages=$('#f-pages').value;
+  const keep=()=>readForm(d);
+  const _unused=()=>{d.title=$('#f-title').value.trim();d.author=$('#f-author').value.trim();d.genre=$('#f-genre').value.trim();d.pages=$('#f-pages').value;
     d.startedAt=$('#f-start').value;d.finishedAt=$('#f-finish').value};
   $('#scrim').onclick=e=>{if(e.target.id==='scrim')close()};
   $('#cancel').onclick=close;
+  if(SEARCH){$('#f-search').onclick=()=>{keep();doSearch(d)};
+    $('#f-title').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();keep();doSearch(d)}});
+    document.querySelectorAll('[data-pick]').forEach(b=>b.onclick=()=>{keep();pick(d,d._results[+b.dataset.pick])});
+    $('#sr-close')&&($('#sr-close').onclick=()=>{keep();d._results=null;d._err='';renderSheet()})}
   document.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{keep();d.status=b.dataset.st;
     if(d.status!=='wish'&&!d.startedAt)d.startedAt=today();
     if(d.status==='done'&&!d.finishedAt)d.finishedAt=today();
@@ -680,7 +745,7 @@ function renderSheet(){const d=draft;
     if(d.status==='done'&&!d.finishedAt){$('#err').textContent='완독한 날을 골라 주세요.';return}
     if(d.startedAt&&d.finishedAt&&d.finishedAt<d.startedAt){$('#err').textContent='완독한 날이 시작한 날보다 빨라요.';return}
     if(d.status==='wish'){d.startedAt='';d.finishedAt=''} if(d.status==='reading')d.finishedAt='';
-    const {_new,_confirm,...book}=d;book.updatedAt=Date.now();const i=state.books.findIndex(b=>b.id===book.id);
+    const {_new,_confirm,_results,_searching,_err,_loading,...book}=d;book.updatedAt=Date.now();const i=state.books.findIndex(b=>b.id===book.id);
     if(i>=0)state.books[i]=book;else state.books.push(book);
     save();close();rerender();toast(_new?'책장에 꽂았어요':'저장했어요')};
   if(d._new)setTimeout(()=>$('#f-title')?.focus(),30);
