@@ -1,6 +1,6 @@
 // 북퀘스트 오프라인 캐시. 앱을 고쳐 올릴 때 VERSION 숫자를 올리면 새 버전으로 바뀝니다.
-const VERSION = 'bookquest-v2';
-const CORE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
+const VERSION = 'bookquest-v5';
+const CORE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './fonts/Galmuri11.woff2', './fonts/Galmuri11-Bold.woff2'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(VERSION).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));
 });
